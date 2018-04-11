@@ -1,0 +1,17 @@
+<h1>Blog details</h1>
+<p>Content: <%=@post.content%></p>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @post.image_url(:thumb) if @post.image?%>
+</p>
+<%= form_with(model: @post, url: posts_path, local: true, method: 'get') do |form| %>
+<%= form.submit "Back", name: 'back' ,class:'btn btn-info',style:'float:left;margin-right:30px'%>
+<%end%>
+
+  <% unless @post.user_id == current_user %>
+    <% if @favorite.present? %>
+      <%= link_to 'Cancel favorites', favorite_path(post_id: @post.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'To favorite', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>

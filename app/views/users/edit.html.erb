@@ -1,0 +1,21 @@
+<%= form_with(model: @user,local: true,html: {multipart: true} ) do |f|%>
+    <% if @user.errors.any? %>
+        <div class="error_explanation">
+            <h2><%= @user.errors.count%> errors occured!!</h2>
+            <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end%>
+    <br>
+  <div class="field form-group row">
+    <%= f.label :image , class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px'%>
+    <%= f.file_field :image, id: :user_image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div style="text-align:center">
+       <%= f.submit 'Save', class: 'btn btn-primary btn-save', style:'width:200px' %>
+  </div>
+<% end %>

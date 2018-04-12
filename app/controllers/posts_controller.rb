@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     @user =User.find_by(id: session[:user_id])
     
       if @post.save
-        PostMailer.post_mailer(@user).deliver_later
+        PostMailer.post_mail(@user,@post).deliver_later
         redirect_to posts_path, notice: 'Post was successfully created.' 
       else
        render 'new'

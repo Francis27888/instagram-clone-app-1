@@ -40,14 +40,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
+    
       if @post.update(post_params)
          redirect_to posts_path, notice: 'Post was successfully updated.' 
       else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        render 'edit'
       end
-    end
   end
 
   def destroy

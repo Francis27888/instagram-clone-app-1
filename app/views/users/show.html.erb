@@ -18,12 +18,17 @@
           <%=image_tag(@user.image_url(:thumb)) if @user.image?%>
         <% end %>                             
       </div>
-      <div class="col col-6" style="top:70px">
-        <% if current_user.image?%>
+      <div class="col col-6">
+      <% if current_user.image?%>
+        <div style="top:70px">
           <h4 style="text-align:center">Update Your Profile Picture</h4>
-        <% else %>
+        </div>
+      <% else %>
+        <div style="top:0px">
           <h4 style="text-align:center">Add Your First Profile Picture</h4>
-        <% end %>
+        </div>
+      <% end %>
+      
         <div class="field form-group row">
           <%= f.label :image , class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px'%>
           <%= f.file_field :image, id: :user_image %>
@@ -33,7 +38,12 @@
       </div>
     </div>
           <hr>
-    <h4 style="text-align:center">Your Favorite post</h4>
+    <%if @post.present?%>
+      <h4 style="text-align:center">Your Favorite post(s)</h4>
+    <% else %>
+      <h4 style="text-align:center">You ave not favorited any post yet, ceck on post list and go to <i class="btn btn-info glyphicon glyphicon-eye-open"></i> to make your first favorite!!!</h4>
+    <% end %>
+    
     <div style="margin-bottom:100px">
     <div class="row">
     <% @post.each do |p|%>

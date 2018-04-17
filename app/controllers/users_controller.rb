@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'posting', except: [:index]
+  layout 'posting', except: [:index,:new,:create]
   def index
     @user = User.new
   end

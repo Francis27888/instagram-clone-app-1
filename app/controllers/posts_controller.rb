@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  layout 'posting'
+  #layout 'posting'
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :user_is_logged_in, only: [:new,:edit,:show,:create]
  
